@@ -5,21 +5,20 @@ from imgaug import augmenters as iaa
 import numpy as np
 from natsort import natsorted
 
-# Set up the image augmentation sequence
 # seq = iaa.Sequential([
-#     iaa.Multiply((0.75, 1.25)), # Change brightness by a factor between 0.75 and 1.25
+#     iaa.Multiply((0.75, 1.25)),
 #     iaa.AddToHueAndSaturation((-45, 45))
 # ])
 
 seq = iaa.Sequential([
-    iaa.Fliplr(0.5), # horizontal flips
-    iaa.Crop(percent=(0, 0.1)), # random crops
+    # iaa.Fliplr(0.5), # horizontal flips
+    # iaa.Crop(percent=(0, 0.1)), # random crops
     # Small gaussian blur with random sigma between 0 and 0.5.
     # But we only blur about 50% of all images.
-    iaa.Sometimes(
-        0.5,
-        iaa.GaussianBlur(sigma=(0, 0.5))
-    ),
+    # iaa.Sometimes(
+    #     0.5,
+    #     iaa.GaussianBlur(sigma=(0, 0.5))
+    # ),
     # Strengthen or weaken the contrast in each image.
     iaa.LinearContrast((0.75, 1.5)),
     # Add gaussian noise.
@@ -34,16 +33,16 @@ seq = iaa.Sequential([
     iaa.Multiply((0.8, 1.2), per_channel=0.2),
     # Apply affine transformations to each image.
     # Scale/zoom them, translate/move them, rotate them and shear them.
-    iaa.Affine(
-        scale={"x": (0.8, 1.2), "y": (0.8, 1.2)},
-        translate_percent={"x": (-0.2, 0.2), "y": (-0.2, 0.2)},
-        rotate=(-25, 25),
-        shear=(-8, 8)
-    )
+    # iaa.Affine(
+    #     scale={"x": (0.8, 1.2), "y": (0.8, 1.2)},
+    #     translate_percent={"x": (-0.2, 0.2), "y": (-0.2, 0.2)},
+    #     rotate=(-25, 25),
+    #     shear=(-8, 8)
+    # )
 ], random_order= True) # apply augmenters in random order
 
 image_dir = "D:\Retinopathy\RFMiD\Train_Set\Train_Set"
-image_dir_2 = "D:\Retinopathy\RFMiD\DatasetTwo\Better_B_H_S"
+image_dir_2 = "D:\Retinopathy\RFMiD\DatasetThree\All"
 
 image_files = os.listdir(image_dir)
 image_files = natsorted(image_files)

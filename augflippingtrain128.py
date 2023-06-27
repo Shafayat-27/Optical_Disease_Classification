@@ -5,17 +5,17 @@ from imgaug import augmenters as iaa
 from natsort import natsorted
 
 seq = iaa.Sequential([
-    iaa.Fliplr(p=1.0)
-    # iaa.Fliplr(p=1.0)
+    iaa.Fliplr(p=1.0),
+    iaa.Flipud(p=1.0)
 ])
 
-image_dir = "D:\Retinopathy\RFMiD\DatasetTwo\Better_B_H_S"
-image_dir_2 = "D:\Retinopathy\RFMiD\DatasetTwo\Better_Flipped_LR"
+image_dir = "D:\Retinopathy\RFMiD\DatasetThree\Aug_1920"
+image_dir_2 = "D:\Retinopathy\RFMiD\DatasetThree\Flipped_Aug_1920_UD_LR"
 
 image_files = os.listdir(image_dir)
 image_files = natsorted(image_files)
 
-last_file_value = 5760
+last_file_value = 3840
 
 for file_name in image_files:
     image_path = os.path.join(image_dir, file_name)
